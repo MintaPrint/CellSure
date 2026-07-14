@@ -231,6 +231,7 @@ nav.main-nav a:hover{color:var(--cyan)}
 .step p b{color:var(--text);font-weight:600}
 .step-list{list-style:none;margin-top:16px;padding-top:16px;border-top:1px solid var(--line);display:grid;gap:9px}
 .step-list li{display:flex;gap:10px;align-items:baseline;font-size:14px;color:var(--text-soft)}
+.step-list li b{color:var(--text);font-weight:600}
 .step-list .tick{font-family:var(--mono);color:var(--cyan);font-weight:700;font-size:12px;flex:none}
 
 /* ============ TWO PATHS ============ */
@@ -257,10 +258,6 @@ nav.main-nav a:hover{color:var(--cyan)}
   font-family:var(--mono);color:var(--cyan);font-weight:700;font-size:13px;flex:none;
 }
 .path .btn{margin-top:auto;align-self:flex-start}
-.path-note{
-  font-family:var(--mono);font-size:12px;color:var(--slate);
-  margin-top:14px;letter-spacing:.04em;
-}
 
 /* ============ CERTIFICATE ============ */
 .cert-grid{display:grid;gap:40px;align-items:center;margin-top:8px}
@@ -339,8 +336,13 @@ nav.main-nav a:hover{color:var(--cyan)}
 }
 .cert-stamp{position:absolute;right:14px;top:118px;width:104px;height:104px;opacity:.9;pointer-events:none}
 @media(max-width:640px){
-  .cert-stamp{width:84px;height:84px;top:auto;bottom:130px;right:10px}
-  .cert-main{grid-template-columns:1fr;gap:18px}
+  .cert-main{grid-template-columns:1fr auto;gap:16px 14px;align-items:center}
+  .cert-soh{grid-column:1;grid-row:1}
+  .cert-stamp{
+    position:static;grid-column:2;grid-row:1;
+    width:96px;height:96px;justify-self:end;align-self:center;
+  }
+  .cert-cap{grid-column:1/-1;grid-row:2}
 }
 
 /* ============ WHY INDEPENDENT ============ */
@@ -589,8 +591,10 @@ footer{border-top:1px solid var(--line);padding:52px 0 36px;font-size:14px}
       <article class="step">
         <p class="step-num">03</p>
         <h3>You get a certified report</h3>
-        <p>Same day, you receive the CellSure certificate: <b>SoH %, usable capacity and a clear verdict</b>, signed, serial-numbered and verifiable online.</p>
+        <p>Same day, you receive the CellSure certificate.</p>
         <ul class="step-list">
+          <li><span class="tick">✓</span><b>SoH %, usable capacity and a clear verdict</b></li>
+          <li><span class="tick">✓</span>Signed, serial-numbered and verifiable online</li>
           <li><span class="tick">✓</span>Cell-level diagnostics: voltage balance across individual cells, flagging hidden issues</li>
           <li><span class="tick">✓</span>Real-world range estimates</li>
           <li><span class="tick">✓</span>OEM warranty tracking</li>
@@ -616,8 +620,7 @@ footer{border-top:1px solid var(--line);padding:52px 0 36px;font-size:14px}
           <li><span class="tick">✓</span>We test batches on-site, so cars never leave your lot</li>
           <li><span class="tick">✓</span>Volume rates for repeat visits</li>
         </ul>
-        <a class="btn btn-primary" href="#book">Book a free demo test</a>
-        <p class="path-note">// FIRST TEST ON ONE EV: FREE. KEEP THE CERTIFICATE.</p>
+        <a class="btn btn-primary" href="#book">Book a test <span class="arrow">→</span></a>
       </article>
 
       <article class="path path--buyer" id="buyers">
@@ -629,8 +632,7 @@ footer{border-top:1px solid var(--line);padding:52px 0 36px;font-size:14px}
           <li><span class="tick">✓</span>A plain-English verdict on the spot, certificate the same day</li>
           <li><span class="tick">✓</span>Evidence you can negotiate with, or walk away on</li>
         </ul>
-        <a class="btn btn-ghost" href="#book">Book a pre-purchase test</a>
-        <p class="path-note">// ONE CAR, ONE VISIT, ONE CLEAR ANSWER.</p>
+        <a class="btn btn-primary" href="#book">Book a test <span class="arrow">→</span></a>
       </article>
 
     </div>
@@ -676,18 +678,7 @@ footer{border-top:1px solid var(--line);padding:52px 0 36px;font-size:14px}
             <div class="cap-bar"><div class="cap-fill"></div></div>
             <div class="cap-row"><span>RATED WHEN NEW</span><b>64.0 kWh</b></div>
           </div>
-        </div>
-        <div class="cert-rows">
-          <div class="cert-row"><span class="k">BMS DIAGNOSTIC LINK</span><span class="v ok">✓ ESTABLISHED</span></div>
-          <div class="cert-row"><span class="k">CELL BALANCE</span><span class="v ok">✓ WITHIN SPEC</span></div>
-          <div class="cert-row"><span class="k">FAULT CODES</span><span class="v">NONE STORED</span></div>
-          <div class="cert-row"><span class="k">ENGINEER</span><span class="v">CS-01 · SIGNED</span></div>
-        </div>
-        <div class="cert-bottom">
-          <span class="verdict">PASS · EXCELLENT</span>
-          <span class="cert-serial">VERIFY AT CELLSURE.CO.UK/VERIFY</span>
-        </div>
-        <!-- rotated independence stamp -->
+          <!-- independent stamp -->
         <svg class="cert-stamp" viewBox="0 0 120 120" aria-hidden="true">
           <g transform="rotate(-14 60 60)">
             <circle cx="60" cy="60" r="52" fill="none" stroke="#22D3EE" stroke-width="1.6" opacity=".8"/>
@@ -699,6 +690,17 @@ footer{border-top:1px solid var(--line);padding:52px 0 36px;font-size:14px}
             <path d="M46 61l9 9 19-20" stroke="#22D3EE" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/>
           </g>
         </svg>
+        </div>
+        <div class="cert-rows">
+          <div class="cert-row"><span class="k">BMS DIAGNOSTIC LINK</span><span class="v ok">✓ ESTABLISHED</span></div>
+          <div class="cert-row"><span class="k">CELL BALANCE</span><span class="v ok">✓ WITHIN SPEC</span></div>
+          <div class="cert-row"><span class="k">FAULT CODES</span><span class="v">NONE STORED</span></div>
+          <div class="cert-row"><span class="k">ENGINEER</span><span class="v">CS-01 · SIGNED</span></div>
+        </div>
+        <div class="cert-bottom">
+          <span class="verdict">PASS · EXCELLENT</span>
+          <span class="cert-serial">VERIFY AT CELLSURE.CO.UK/VERIFY</span>
+        </div>
       </div>
     </div>
   </div>
