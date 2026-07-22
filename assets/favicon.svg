@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Simplified CellSure mark: shield + charge-level stripes + bolt -->
+  <path d="M32 3 L57 11 V32 C57 47 46 57 32 61 C18 57 7 47 7 32 V11 Z" fill="#0D1117" stroke="#9AA7B5" stroke-width="3" stroke-linejoin="round"/>
+  <g fill="#3E8E41">
+    <rect x="15" y="15" width="34" height="6" rx="1.5"/>
+    <rect x="15" y="25" width="34" height="6" rx="1.5"/>
+    <rect x="15" y="35" width="34" height="6" rx="1.5"/>
+    <rect x="17" y="45" width="30" height="6" rx="1.5"/>
+  </g>
+  <path d="M36 8 L22 34 H31 L27 56 L44 27 H34 L40 8 Z" fill="#22D3EE" stroke="#E5E9F0" stroke-width="1.5" stroke-linejoin="round"/>
+</svg>

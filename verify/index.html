@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verify a Certificate | CellSure</title>
+<meta name="description" content="Check that a CellSure EV battery health certificate is genuine. Enter the certificate number to see the recorded State of Health, capacity, vehicle and verdict.">
+<link rel="canonical" href="https://www.cellsure.co.uk/verify/">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta property="og:site_name" content="CellSure">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.cellsure.co.uk/verify/">
+<meta property="og:title" content="Verify a CellSure Certificate">
+<meta property="og:description" content="Check that a CellSure EV battery health certificate is genuine.">
+<meta property="og:image" content="https://www.cellsure.co.uk/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Verify a CellSure Certificate">
+<meta name="twitter:description" content="Check that a CellSure EV battery health certificate is genuine.">
+<meta name="twitter:image" content="https://www.cellsure.co.uk/assets/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header>
+  <div class="header-inner">
+    <a class="logo" href="/" aria-label="CellSure, home">
+      <img class="logo-mark" src="/assets/logo.png" alt="CellSure logo">
+      <span class="logo-name">Cell<span>Sure</span></span>
+    </a>
+    <nav class="main-nav" aria-label="Main">
+      <a href="/#how">How it works</a>
+      <a href="/#dealers">Dealers</a>
+      <a href="/#buyers">Buyers</a>
+      <a href="/#coverage">Coverage</a>
+      <a href="/#faq">FAQ</a>
+    </nav>
+    <a class="header-phone" href="tel:+447522048822">07522 048822</a>
+    <a class="btn btn-primary header-cta" href="/#book">Book a test</a>
+  </div>
+</header>
+
+<main id="main">
+<section class="page verify-hero">
+  <div class="wrap">
+    <p class="eyebrow" style="justify-content:center">Certificate register</p>
+    <h1>Verify a certificate.</h1>
+    <p class="section-lede">Every CellSure certificate is serial-numbered and recorded in our register. Enter the certificate number printed on the report to confirm it's genuine and see what we recorded on the day.</p>
+
+    <div class="panel">
+      <i class="corner" aria-hidden="true"></i>
+      <div class="panel-head">
+        <span>CERTIFICATE LOOKUP</span>
+        <span class="live"><span class="live-dot"></span>REGISTER ONLINE</span>
+      </div>
+      <!-- method="get" so the form still works without JavaScript: ?cert=… is read on load -->
+      <form id="verify-form" class="verify-form" action="" method="get">
+        <label class="fld"><span>Certificate number</span>
+          <input id="v-cert" name="cert" type="text" placeholder="e.g. CS-2026-000418"
+                 autocomplete="off" spellcheck="false" required
+                 pattern="\s*[Cc][Ss]-\d{4}-\d{6}\s*"
+                 title="Certificate numbers look like CS-2026-000418">
+        </label>
+        <button class="btn btn-primary" type="submit">Verify <span class="arrow">→</span></button>
+      </form>
+      <p class="book-note" id="v-note" aria-live="polite">// THE NUMBER IS PRINTED TOP-RIGHT OF THE CERTIFICATE, e.g. CS-2026-000418.</p>
+    </div>
+
+    <div class="verify-result" id="v-result" aria-live="polite"></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="logo" href="/" aria-label="CellSure, back to home">
+          <img class="logo-mark" src="/assets/logo.png" alt="CellSure logo">
+          <span class="logo-name">Cell<span>Sure</span></span>
+        </a>
+        <p>Independent EV battery State-of-Health testing and certification. Mobile across the East Midlands.</p>
+      </div>
+      <div class="foot-col">
+        <p class="foot-h">Contact</p>
+        <ul class="foot-mono">
+          <li><a href="tel:+447522048822">07522 048822</a></li>
+          <li><a href="mailto:hello@cellsure.co.uk">hello@cellsure.co.uk</a></li>
+          <li>Mon to Sat · 08:00 to 18:00</li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <p class="foot-h">Area served</p>
+        <ul>
+          <li>Derbyshire</li>
+          <li>Nottinghamshire</li>
+          <li>Lincolnshire</li>
+          <li class="foot-mono">EAST MIDLANDS</li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <p class="foot-h">Company</p>
+        <ul>
+          <li><a href="/verify/">Verify a certificate</a></li>
+          <li><a href="/privacy/">Privacy policy</a></li>
+          <li><a href="/terms/">Terms of service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="smallprint">
+      <span>© 2026 CELLSURE · EAST MIDLANDS, UK</span>
+      <span><a href="/privacy/">PRIVACY</a> · <a href="/terms/">TERMS</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // TODO: connect to real certificate store.
+  // For now this looks certificates up in a static demo file so the page
+  // works end-to-end. Swap DATA_URL for the live register endpoint when ready.
+  var DATA_URL = '/verify/certificates.json';
+
+  var form   = document.getElementById('verify-form');
+  var input  = document.getElementById('v-cert');
+  var note   = document.getElementById('v-note');
+  var result = document.getElementById('v-result');
+
+  function esc(s){
+    return String(s).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+
+  function fmtDate(iso){
+    try{
+      return new Date(iso + 'T00:00:00').toLocaleDateString('en-GB',
+        {day:'2-digit', month:'short', year:'numeric'}).toUpperCase();
+    }catch(e){ return iso; }
+  }
+
+  function setNote(msg, ok){
+    note.textContent = msg;
+    note.classList.toggle('ok', !!ok);
+  }
+
+  function renderFound(serial, c){
+    var pct = Math.round(c.usableKwh / c.ratedKwh * 100);
+    var vClass = c.verdict === 'Pass' ? '' : (c.verdict === 'Advisory' ? ' advisory' : ' fail');
+    result.innerHTML =
+      '<div class="vcard">' +
+        '<div class="vcard-top"><span>CERT Nº ' + esc(serial) + '</span><span class="ok-flag">✓ GENUINE · ON REGISTER</span></div>' +
+        '<p class="vcard-vehicle">' + esc(c.vehicle) +
+          '<small>VIN ····' + esc(c.vinLast4) + ' &nbsp;·&nbsp; TESTED ' + esc(fmtDate(c.testDate)) + '</small></p>' +
+        '<div class="vcard-main">' +
+          '<div class="vcard-soh"><p class="num">' + esc(c.soh) + '<span>%</span></p><p class="lbl">State of Health</p></div>' +
+          '<div class="vcard-cap">' +
+            '<div class="cap-row"><span>USABLE CAPACITY</span><b>' + esc(c.usableKwh.toFixed(1)) + ' kWh</b></div>' +
+            '<div class="cap-bar"><div class="cap-fill" style="width:' + pct + '%"></div></div>' +
+            '<div class="cap-row"><span>RATED WHEN NEW</span><b>' + esc(c.ratedKwh.toFixed(1)) + ' kWh</b></div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="vcard-rows">' +
+          '<div class="vcard-row"><span class="k">VEHICLE</span><span class="v">' + esc(c.vehicle) + '</span></div>' +
+          '<div class="vcard-row"><span class="k">VIN (LAST 4)</span><span class="v">····' + esc(c.vinLast4) + '</span></div>' +
+          '<div class="vcard-row"><span class="k">TEST DATE</span><span class="v">' + esc(fmtDate(c.testDate)) + '</span></div>' +
+        '</div>' +
+        '<div class="vcard-bottom">' +
+          '<span class="verdict' + vClass + '">' + esc(c.verdict.toUpperCase()) + '</span>' +
+          '<span class="issued">' + esc(c.issuer) + '</span>' +
+        '</div>' +
+      '</div>';
+  }
+
+  function renderNotFound(serial){
+    result.innerHTML =
+      '<div class="not-found">' +
+        '<p><b>No certificate found for</b> <span class="code">' + esc(serial) + '</span>.</p>' +
+        '<p style="margin-top:10px">Check the number against the top-right of the certificate — the format is <span class="code">CS-YYYY-NNNNNN</span>. ' +
+        'If it still doesn\'t appear, the certificate may not be genuine. Call us on <a href="tel:+447522048822" style="color:var(--cyan)">07522 048822</a> ' +
+        'or email <a href="mailto:hello@cellsure.co.uk" style="color:var(--cyan)">hello@cellsure.co.uk</a> and we\'ll check the register for you.</p>' +
+      '</div>';
+  }
+
+  function renderError(){
+    result.innerHTML =
+      '<div class="not-found">' +
+        '<p><b>Sorry — the register can\'t be reached right now.</b></p>' +
+        '<p style="margin-top:10px">Please try again in a moment, or call <a href="tel:+447522048822" style="color:var(--cyan)">07522 048822</a> and we\'ll verify it for you.</p>' +
+      '</div>';
+  }
+
+  function lookup(raw){
+    var serial = (raw || '').trim().toUpperCase();
+    if(!serial){ return; }
+    setNote('// CHECKING THE REGISTER…', false);
+    fetch(DATA_URL, {cache:'no-store'})
+      .then(function(r){ if(!r.ok) throw new Error('bad status'); return r.json(); })
+      .then(function(data){
+        var c = data.certificates && data.certificates[serial];
+        if(c){
+          setNote('// CERTIFICATE FOUND.', true);
+          renderFound(serial, c);
+        }else{
+          setNote('// NOT ON THE REGISTER.', false);
+          renderNotFound(serial);
+        }
+        result.scrollIntoView({behavior:'smooth', block:'nearest'});
+      })
+      .catch(function(){
+        setNote('// LOOKUP FAILED.', false);
+        renderError();
+      });
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!form.reportValidity()) return;
+    var serial = input.value.trim().toUpperCase();
+    lookup(serial);
+    // keep the URL shareable without reloading
+    if(history.replaceState){
+      history.replaceState(null, '', '?cert=' + encodeURIComponent(serial));
+    }
+  });
+
+  // Support no-JS style GET submits and shared links: /verify/?cert=CS-2026-000418
+  var q = new URLSearchParams(location.search).get('cert');
+  if(q){ input.value = q.trim().toUpperCase(); lookup(q); }
+})();
+</script>
+</body>
+</html>

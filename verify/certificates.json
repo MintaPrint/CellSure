@@ -1,0 +1,25 @@
+{
+  "_comment": "TODO: connect to real certificate store. This static file is DEMO DATA ONLY so that /verify resolves and works end-to-end. Replace the fetch in /verify/index.html with a call to the live certificate API (or regenerate this file from the certificate register on each issue).",
+  "certificates": {
+    "CS-2026-000418": {
+      "soh": 94,
+      "usableKwh": 60.2,
+      "ratedKwh": 64.0,
+      "vehicle": "2021 Kia e-Niro",
+      "vinLast4": "0412",
+      "testDate": "2026-07-06",
+      "verdict": "Pass",
+      "issuer": "Issued by CellSure — independent"
+    },
+    "CS-2026-000377": {
+      "soh": 86,
+      "usableKwh": 34.4,
+      "ratedKwh": 40.0,
+      "vehicle": "2019 Nissan Leaf",
+      "vinLast4": "8830",
+      "testDate": "2026-06-24",
+      "verdict": "Advisory",
+      "issuer": "Issued by CellSure — independent"
+    }
+  }
+}
