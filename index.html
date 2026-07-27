@@ -225,28 +225,27 @@ header{
 }
 header.scrolled{border-bottom-color:var(--line-strong)}
 .header-inner{
-  display:flex;align-items:center;gap:28px;
-  height:68px;max-width:1120px;margin:0 auto;
-  padding:0 var(--pad);
+  display:flex;align-items:center;gap:clamp(8px,1.4vw,22px);
+  height:68px;max-width:1480px;margin:0 auto;
+  padding:0 clamp(12px,3vw,48px);
 }
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:auto}
-.logo-mark{width:34px;height:34px;flex:none;object-fit:contain}
-.logo-name{font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:-.01em}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none;flex:none}
+.logo-mark{width:32px;height:32px;flex:none;object-fit:contain}
+.logo-name{font-family:var(--display);font-weight:700;font-size:clamp(17px,1.7vw,19px);letter-spacing:-.01em}
 .logo-name span{color:var(--cyan)}
-nav.main-nav{display:none;gap:26px}
+nav.main-nav{display:none;align-items:center;justify-content:center;gap:clamp(6px,1vw,22px);flex:1;min-width:0}
 nav.main-nav a{
-  text-decoration:none;font-size:14.5px;font-weight:500;color:var(--text-soft);
+  text-decoration:none;font-size:clamp(11px,1.05vw,14.5px);font-weight:500;color:var(--text-soft);white-space:nowrap;
   transition:color .15s ease;
 }
 nav.main-nav a:hover{color:var(--cyan)}
 .header-phone{
-  display:none;font-family:var(--mono);font-size:14px;font-weight:500;
-  color:var(--text-soft);text-decoration:none;letter-spacing:.02em;
+  display:inline;font-family:var(--mono);font-size:clamp(11px,1.05vw,14px);font-weight:500;
+  color:var(--text-soft);text-decoration:none;letter-spacing:.02em;white-space:nowrap;
 }
 .header-phone:hover{color:var(--cyan)}
-.header-cta{padding:10px 20px;font-size:14.5px}
-@media(min-width:640px){.header-phone{display:inline}}
-@media(min-width:920px){nav.main-nav{display:flex}}
+.header-cta{display:none}
+@media(min-width:620px){nav.main-nav{display:flex}}
 
 /* ============ HERO ============ */
 .hero{padding:clamp(112px,15vh,156px) 0 clamp(52px,6vw,68px);border-top:none}
@@ -660,7 +659,6 @@ footer{border-top:1px solid var(--line);padding:52px 0 36px;font-size:14px}
       <a href="/verify/">Verify</a>
     </nav>
     <a class="header-phone" href="tel:+447522048822">07522 048822</a>
-    <a class="btn btn-primary header-cta" href="#book">Book a test</a>
   </div>
 </header>
 
@@ -1057,10 +1055,9 @@ footer{border-top:1px solid var(--line);padding:52px 0 36px;font-size:14px}
         <span class="live"><span class="live-dot"></span>ACCEPTING JOBS</span>
       </div>
 
-      <!-- Real form: posts natively to Formspree even with JS disabled.
-           TODO: sign up free at formspree.io, create a form, and replace
-           YOUR_FORM_ID below with the ID it gives you. -->
-      <form id="book-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <!-- Real form: posts natively to FormSubmit even with JS disabled.
+           First live submission triggers a confirmation email to hello@cellsure.co.uk. -->
+      <form id="book-form" action="https://formsubmit.co/hello@cellsure.co.uk" method="POST">
       <div class="book-grid">
         <label class="fld"><span>Name</span><input id="f-name" name="name" type="text" autocomplete="name" placeholder="Your name" required></label>
         <label class="fld"><span>Phone</span><input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="07…" required></label>
@@ -1074,7 +1071,11 @@ footer{border-top:1px solid var(--line);padding:52px 0 36px;font-size:14px}
           </select>
         </label>
       </div>
-      <input type="hidden" name="_subject" value="CellSure booking request">
+      <input type="hidden" name="_subject" value="New CellSure booking request">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
+      <input type="hidden" id="f-submitted-at" name="submittedAt" value="">
 
       <div class="cta-actions">
         <button class="btn btn-primary" type="submit" id="f-send">Request my slot <span class="arrow">→</span></button>
@@ -1197,12 +1198,11 @@ footer{border-top:1px solid var(--line);padding:52px 0 36px;font-size:14px}
 
   /* ---------------------------------------------------------------
      BOOKING FORM (progressive enhancement)
-     The form element posts natively to Formspree, so it still works
+     The form element posts natively to FormSubmit, so it still works
      with JavaScript disabled. This script only enhances it: inline
      validation, AJAX submit, and success / error states in place.
-     The Formspree endpoint lives on the form's action attribute in
-     the HTML. Until YOUR_FORM_ID is replaced with a real Formspree
-     ID, submits fall back to opening the visitor's email app.
+     The native FormSubmit endpoint lives on the form's action attribute;
+     JavaScript switches to the /ajax/ endpoint so visitors stay on-page.
      --------------------------------------------------------------- */
   var form = document.getElementById('book-form');
   if(form){
@@ -1222,7 +1222,10 @@ footer{border-top:1px solid var(--line);padding:52px 0 36px;font-size:14px}
         postcode: g('f-pc'),
         vehicle: g('f-veh') || 'not given',
         enquiry_type: document.getElementById('f-who').value,
-        _subject: 'CellSure booking request: ' + (g('f-veh') || 'EV battery test')
+        _subject: 'CellSure booking request: ' + (g('f-veh') || 'EV battery test'),
+        _template: 'table',
+        _captcha: 'false',
+        submittedAt: new Date().toISOString()
       };
 
       /* inline validation: highlight invalid fields + native messages */
@@ -1233,21 +1236,11 @@ footer{border-top:1px solid var(--line);padding:52px 0 36px;font-size:14px}
         form.reportValidity();
         return;
       }
-
-      /* Formspree not wired up yet: fall back to the visitor's email app */
-      var endpoint = form.getAttribute('action');
-      if(endpoint.indexOf('YOUR_FORM_ID') !== -1){
-        ev.preventDefault();
-        var body = 'Name: '+data.name+'\nPhone: '+data.phone+'\nPostcode: '+data.postcode+
-                   '\nVehicle: '+data.vehicle+'\nType: '+data.enquiry_type;
-        window.location.href = 'mailto:hello@cellsure.co.uk?subject=' +
-          encodeURIComponent(data._subject) + '&body=' + encodeURIComponent(body);
-        setNote('// YOUR EMAIL APP SHOULD OPEN WITH THE REQUEST. IF NOT, CALL 07522 048822.', 'ok');
-        return;
-      }
+      document.getElementById('f-submitted-at').value = data.submittedAt;
 
       /* enhanced AJAX submit (native POST is the no-JS fallback) */
       ev.preventDefault();
+      var endpoint = form.getAttribute('action').replace('https://formsubmit.co/', 'https://formsubmit.co/ajax/');
       send.disabled = true;
       setNote('// SENDING…');
       try{
