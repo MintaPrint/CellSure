@@ -1269,5 +1269,54 @@ footer{border-top:1px solid var(--line);padding:52px 0 36px;font-size:14px}
 
 })();
 </script>
+<!-- GA4 interaction events: call_click / dealer_enquiry_click / booking_request -->
+<script>
+(function(){
+  function track(name, params){
+    if (typeof window.gtag === 'function') { window.gtag('event', name, params || {}); }
+  }
+  function label(el){ return (el.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 100); }
+
+  document.addEventListener('click', function(ev){
+    var t = ev.target;
+    if (!t || typeof t.closest !== 'function') { return; }
+    var a = t.closest('a[href]');
+    if (!a) { return; }
+    var href = a.getAttribute('href') || '';
+
+    if (href.indexOf('tel:') === 0) {
+      track('call_click', {
+        link_url: href,
+        link_text: label(a),
+        link_location: a.className || 'body'
+      });
+      return;
+    }
+
+    if (href.indexOf('mailto:') === 0 && /dealer/i.test(href)) {
+      track('dealer_enquiry_click', {
+        link_url: href.split('?')[0],
+        link_text: label(a),
+        link_location: a.className || 'body'
+      });
+    }
+  }, true);
+
+  var form = document.getElementById('book-form');
+  var note = document.getElementById('f-note');
+  if (form && note && typeof MutationObserver === 'function') {
+    var fired = false;
+    new MutationObserver(function(){
+      if (fired || !note.classList.contains('ok')) { return; }
+      fired = true;
+      var who = document.getElementById('f-who');
+      track('booking_request', {
+        form_id: 'book-form',
+        enquiry_type: who ? who.value : 'not given'
+      });
+    }).observe(note, { attributes: true, attributeFilter: ['class'] });
+  }
+})();
+</script>
 </body>
 </html>
