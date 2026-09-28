@@ -9,238 +9,229 @@
   gtag('js', new Date());
   gtag('config', 'G-H4P8HEW8DB');
 </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Verify a Certificate | CellSure</title>
-<meta name="description" content="Check that a CellSure EV battery health certificate is genuine. Enter the certificate number to see the recorded State of Health, capacity, vehicle and verdict.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Check a certificate | CellSure</title>
+<meta name="description" content="Check a CellSure EV battery health certificate. Enter the assessment ID and registration to see the result.">
 <link rel="canonical" href="https://www.cellsure.co.uk/verify/">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
-<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<meta property="og:site_name" content="CellSure">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://www.cellsure.co.uk/verify/">
-<meta property="og:title" content="Verify a CellSure Certificate">
-<meta property="og:description" content="Check that a CellSure EV battery health certificate is genuine.">
-<meta property="og:image" content="https://www.cellsure.co.uk/assets/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Verify a CellSure Certificate">
-<meta name="twitter:description" content="Check that a CellSure EV battery health certificate is genuine.">
-<meta name="twitter:image" content="https://www.cellsure.co.uk/assets/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=20260727">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --base:#0D1117; --panel:#131A24; --line:#243042;
+  --blue:#2563EB; --cyan:#22D3EE; --plat:#E5E9F0; --muted:#8B96A8;
+  --amber:#F5B544;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--base);color:var(--plat)}
+body{font:16px/1.6 Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh;display:flex;flex-direction:column}
+a{color:var(--cyan)}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+
+header{border-bottom:1px solid var(--line)}
+.bar{max-width:680px;margin:0 auto;padding:18px 20px;display:flex;justify-content:space-between;align-items:center}
+.brand{font:700 20px/1 "Space Grotesk",sans-serif;color:var(--plat);text-decoration:none;letter-spacing:-.01em}
+.brand span{color:var(--cyan)}
+.bar a.back{color:var(--muted);font-size:14px;text-decoration:none}
+.bar a.back:hover{color:var(--plat)}
+
+main{flex:1;width:100%;max-width:680px;margin:0 auto;padding:48px 20px 64px}
+h1{font:700 clamp(30px,6vw,42px)/1.1 "Space Grotesk",sans-serif;letter-spacing:-.02em;margin:0 0 12px}
+.lead{color:var(--muted);margin:0 0 32px;max-width:52ch}
+
+form{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px;align-items:end}
+label{display:block;font-size:14px;font-weight:500;margin-bottom:6px}
+input{width:100%;background:var(--panel);border:1px solid var(--line);border-radius:8px;color:var(--plat);
+  font:600 18px/1 "JetBrains Mono",ui-monospace,monospace;padding:14px;text-transform:uppercase;letter-spacing:.04em}
+input::placeholder{color:#4A5568;font-weight:400}
+input:focus{border-color:var(--blue);outline:none;box-shadow:0 0 0 3px rgba(37,99,235,.35)}
+button{grid-column:1/-1;background:var(--blue);color:#fff;border:0;border-radius:8px;padding:15px 20px;
+  font:600 16px/1 Inter,sans-serif;cursor:pointer}
+button:hover{background:#1D4FD8}
+button:disabled{opacity:.6;cursor:wait}
+.hint{grid-column:1/-1;margin:2px 0 0;color:var(--muted);font-size:14px}
+.hint code{font-family:"JetBrains Mono",monospace;color:var(--plat)}
+
+#out{margin-top:40px}
+.msg{border:1px solid var(--line);border-left:3px solid var(--amber);background:var(--panel);border-radius:8px;padding:16px 18px}
+.msg p{margin:0}
+.msg p+p{margin-top:6px;color:var(--muted);font-size:14px}
+
+.cert{border:1px solid var(--line);background:var(--panel);border-radius:12px;overflow:hidden}
+.cert-head{padding:14px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:14px}
+.ok{color:var(--cyan);font-weight:600}
+.ok::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--cyan);margin-right:8px;vertical-align:1px}
+.cid{font-family:"JetBrains Mono",monospace;color:var(--muted)}
+.cert-body{padding:24px 20px 20px}
+.car{font:700 22px/1.2 "Space Grotesk",sans-serif;margin:0}
+.reg{display:inline-block;margin-top:10px;background:#F2C230;color:#111;font:700 17px/1 "JetBrains Mono",monospace;
+  letter-spacing:.08em;padding:7px 10px;border-radius:4px}
+
+.soh{margin:28px 0 8px;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.soh-num{font:600 clamp(56px,14vw,84px)/.9 "JetBrains Mono",monospace;color:var(--cyan);letter-spacing:-.04em}
+.soh-lab{color:var(--muted);font-size:14px}
+.meter{height:6px;background:#1E2836;border-radius:3px;overflow:hidden;margin-bottom:10px}
+.meter i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--cyan));width:0;transition:width .9s ease-out}
+.result{font-weight:600;margin:0 0 20px}
+
+dl{margin:0;display:grid;grid-template-columns:auto 1fr;border-top:1px solid var(--line)}
+dt,dd{margin:0;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px}
+dt{color:var(--muted);padding-right:20px}
+dd{text-align:right;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-size:14px}
+
+.actions{padding:20px;border-top:1px solid var(--line)}
+.btn{display:block;text-align:center;border:1px solid var(--blue);color:var(--plat);text-decoration:none;
+  border-radius:8px;padding:13px 16px;font-weight:600}
+.btn:hover{background:rgba(37,99,235,.15)}
+.small{color:var(--muted);font-size:13px;margin:12px 0 0}
+
+.note{margin-top:40px;color:var(--muted);font-size:14px;border-top:1px solid var(--line);padding-top:20px}
+.note p{margin:0 0 8px}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+footer .bar{flex-wrap:wrap;gap:8px}
+footer a{color:var(--muted)}
+
+@media (max-width:540px){
+  form{grid-template-columns:1fr}
+  main{padding-top:32px}
+}
+@media (prefers-reduced-motion:reduce){.meter i{transition:none}}
+</style>
 </head>
 <body>
-
-<a class="skip-link" href="#main">Skip to content</a>
-
 <header>
-  <div class="header-inner">
-    <a class="logo" href="/" aria-label="CellSure, home">
-      <img class="logo-mark" src="/assets/logo.png" alt="CellSure logo">
-      <span class="logo-name">Cell<span>Sure</span></span>
-    </a>
-    <nav class="main-nav" aria-label="Main">
-      <a href="/#how">How it works</a>
-      <a href="/#dealers">Dealers</a>
-      <a href="/#buyers">Buyers</a>
-      <a href="/#coverage">Coverage</a>
-      <a href="/#faq">FAQ</a>
-      <a href="/verify/">Verify</a>
-    </nav>
-    <a class="header-phone" href="tel:+447522048822">07522 048822</a>
+  <div class="bar">
+    <a class="brand" href="/">Cell<span>Sure</span></a>
+    <a class="back" href="/">Back to cellsure.co.uk</a>
   </div>
 </header>
 
-<main id="main">
-<section class="page verify-hero">
-  <div class="wrap">
-    <p class="eyebrow" style="justify-content:center">Certificate register</p>
-    <h1>Verify a certificate.</h1>
-    <p class="section-lede">Every CellSure certificate is serial-numbered and recorded in our register. Enter the certificate number printed on the report to confirm it's genuine and see what we recorded on the day.</p>
+<main>
+  <h1>Check a certificate</h1>
+  <p class="lead">Enter the assessment ID and registration from the certificate. If they match our records, you will see the test result.</p>
 
-    <div class="panel">
-      <i class="corner" aria-hidden="true"></i>
-      <div class="panel-head">
-        <span>CERTIFICATE LOOKUP</span>
-        <span class="live"><span class="live-dot"></span>REGISTER ONLINE</span>
-      </div>
-      <!-- method="get" so the form still works without JavaScript: ?cert=… is read on load -->
-      <form id="verify-form" class="verify-form" action="" method="get">
-        <label class="fld"><span>Certificate number</span>
-          <input id="v-cert" name="cert" type="text" placeholder="e.g. CS-2026-000418"
-                 autocomplete="off" spellcheck="false" required
-                 pattern="\s*[Cc][Ss]-\d{4}-\d{6}\s*"
-                 title="Certificate numbers look like CS-2026-000418">
-        </label>
-        <button class="btn btn-primary" type="submit">Verify <span class="arrow">→</span></button>
-      </form>
-      <p class="book-note" id="v-note" aria-live="polite">// THE NUMBER IS PRINTED TOP-RIGHT OF THE CERTIFICATE, e.g. CS-2026-000418.</p>
+  <form id="f" novalidate>
+    <div>
+      <label for="cid">Assessment ID</label>
+      <input id="cid" name="id" autocomplete="off" spellcheck="false" maxlength="12" placeholder="68675F31" required>
     </div>
+    <div>
+      <label for="reg">Registration</label>
+      <input id="reg" name="reg" autocomplete="off" spellcheck="false" maxlength="10" placeholder="AB12 CDE" required>
+    </div>
+    <p class="hint">The assessment ID is 8 characters. It is at the top of every certificate, for example <code>68675F31</code>.</p>
+    <button id="go" type="submit">Check certificate</button>
+  </form>
 
-    <div class="verify-result" id="v-result" aria-live="polite"></div>
+  <div id="out" aria-live="polite"></div>
+
+  <div class="note">
+    <p>Each certificate only shows when both the ID and the registration are entered. We do not publish a list of tested cars.</p>
+    <p>Questions about a certificate? Email <a href="mailto:hello@cellsure.co.uk">hello@cellsure.co.uk</a> or call <a href="tel:+447522048822">07522 048822</a>.</p>
   </div>
-</section>
 </main>
 
 <footer>
-  <div class="wrap">
-    <div class="foot-grid">
-      <div class="foot-brand">
-        <a class="logo" href="/" aria-label="CellSure, back to home">
-          <img class="logo-mark" src="/assets/logo.png" alt="CellSure logo">
-          <span class="logo-name">Cell<span>Sure</span></span>
-        </a>
-        <p>Independent EV battery State-of-Health testing and certification. Mobile across the East Midlands.</p>
-      </div>
-      <div class="foot-col">
-        <p class="foot-h">Contact</p>
-        <ul class="foot-mono">
-          <li><a href="tel:+447522048822">07522 048822</a></li>
-          <li><a href="mailto:hello@cellsure.co.uk">hello@cellsure.co.uk</a></li>
-          <li>Mon to Sat · 08:00 to 18:00</li>
-        </ul>
-      </div>
-      <div class="foot-col">
-        <p class="foot-h">Area served</p>
-        <ul>
-          <li>Derbyshire</li>
-          <li>Nottinghamshire</li>
-          <li>Lincolnshire</li>
-          <li class="foot-mono">EAST MIDLANDS</li>
-        </ul>
-      </div>
-      <div class="foot-col">
-        <p class="foot-h">Company</p>
-        <ul>
-          <li><a href="/verify/">Verify a certificate</a></li>
-          <li><a href="/privacy/">Privacy policy</a></li>
-          <li><a href="/terms/">Terms of service</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="smallprint">
-      <span>© 2026 CELLSURE · EAST MIDLANDS, UK</span>
-      <span><a href="/privacy/">PRIVACY</a> · <a href="/terms/">TERMS</a></span>
-    </div>
+  <div class="bar">
+    <span>&copy; 2026 CellSure. East Midlands, UK.</span>
+    <span><a href="/privacy/">Privacy</a> &nbsp; <a href="/terms/">Terms</a></span>
   </div>
 </footer>
 
 <script>
 (function(){
-  // TODO: connect to real certificate store.
-  // For now this looks certificates up in a static demo file so the page
-  // works end-to-end. Swap DATA_URL for the live register endpoint when ready.
-  var DATA_URL = '/verify/certificates.json';
+  var SALT = "cellsure-verify-v1", ITER = 150000;
+  var f = document.getElementById("f"), cidEl = document.getElementById("cid"),
+      regEl = document.getElementById("reg"), go = document.getElementById("go"),
+      out = document.getElementById("out"), data = null;
 
-  var form   = document.getElementById('verify-form');
-  var input  = document.getElementById('v-cert');
-  var note   = document.getElementById('v-note');
-  var result = document.getElementById('v-result');
+  function normId(s){ return s.toUpperCase().replace(/[^0-9A-F]/g,"").slice(0,8); }
+  function normReg(s){ return s.toUpperCase().replace(/[^0-9A-Z]/g,""); }
+  function enc(s){ return new TextEncoder().encode(s); }
+  function b64(s){ return Uint8Array.from(atob(s), function(c){ return c.charCodeAt(0); }); }
+  function hex(buf){ return Array.from(new Uint8Array(buf)).map(function(b){ return b.toString(16).padStart(2,"0"); }).join(""); }
+  function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
 
-  function esc(s){
-    return String(s).replace(/[&<>"']/g, function(c){
-      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
-    });
+  function message(main, sub){
+    out.innerHTML = '<div class="msg"><p>' + main + '</p>' + (sub ? '<p>' + sub + '</p>' : '') + '</div>';
   }
 
-  function fmtDate(iso){
+  async function load(){
+    if (data) return data;
+    var r = await fetch("certs.json", {cache:"no-store"});
+    if (!r.ok) throw new Error("load");
+    data = await r.json();
+    return data;
+  }
+
+  async function check(rawId, rawReg){
+    var id = normId(rawId), reg = normReg(rawReg);
+    if (id.length !== 8){ message("The assessment ID should be 8 characters, using 0 to 9 and A to F.", "Check the top of the certificate and try again."); return; }
+    if (reg.length < 2){ message("Enter the registration of the car.", ""); return; }
+
+    go.disabled = true; go.textContent = "Checking";
     try{
-      return new Date(iso + 'T00:00:00').toLocaleDateString('en-GB',
-        {day:'2-digit', month:'short', year:'numeric'}).toUpperCase();
-    }catch(e){ return iso; }
-  }
-
-  function setNote(msg, ok){
-    note.textContent = msg;
-    note.classList.toggle('ok', !!ok);
-  }
-
-  function renderFound(serial, c){
-    var pct = Math.round(c.usableKwh / c.ratedKwh * 100);
-    var vClass = c.verdict === 'Pass' ? '' : (c.verdict === 'Advisory' ? ' advisory' : ' fail');
-    result.innerHTML =
-      '<div class="vcard">' +
-        '<div class="vcard-top"><span>CERT Nº ' + esc(serial) + '</span><span class="ok-flag">✓ GENUINE · ON REGISTER</span></div>' +
-        '<p class="vcard-vehicle">' + esc(c.vehicle) +
-          '<small>VIN ····' + esc(c.vinLast4) + ' &nbsp;·&nbsp; TESTED ' + esc(fmtDate(c.testDate)) + '</small></p>' +
-        '<div class="vcard-main">' +
-          '<div class="vcard-soh"><p class="num">' + esc(c.soh) + '<span>%</span></p><p class="lbl">State of Health</p></div>' +
-          '<div class="vcard-cap">' +
-            '<div class="cap-row"><span>USABLE CAPACITY</span><b>' + esc(c.usableKwh.toFixed(1)) + ' kWh</b></div>' +
-            '<div class="cap-bar"><div class="cap-fill" style="width:' + pct + '%"></div></div>' +
-            '<div class="cap-row"><span>RATED WHEN NEW</span><b>' + esc(c.ratedKwh.toFixed(1)) + ' kWh</b></div>' +
-          '</div>' +
-        '</div>' +
-        '<div class="vcard-rows">' +
-          '<div class="vcard-row"><span class="k">VEHICLE</span><span class="v">' + esc(c.vehicle) + '</span></div>' +
-          '<div class="vcard-row"><span class="k">VIN (LAST 4)</span><span class="v">····' + esc(c.vinLast4) + '</span></div>' +
-          '<div class="vcard-row"><span class="k">TEST DATE</span><span class="v">' + esc(fmtDate(c.testDate)) + '</span></div>' +
-        '</div>' +
-        '<div class="vcard-bottom">' +
-          '<span class="verdict' + vClass + '">' + esc(c.verdict.toUpperCase()) + '</span>' +
-          '<span class="issued">' + esc(c.issuer) + '</span>' +
-        '</div>' +
-      '</div>';
-  }
-
-  function renderNotFound(serial){
-    result.innerHTML =
-      '<div class="not-found">' +
-        '<p><b>No certificate found for</b> <span class="code">' + esc(serial) + '</span>.</p>' +
-        '<p style="margin-top:10px">Check the number against the top-right of the certificate — the format is <span class="code">CS-YYYY-NNNNNN</span>. ' +
-        'If it still doesn\'t appear, the certificate may not be genuine. Call us on <a href="tel:+447522048822" style="color:var(--cyan)">07522 048822</a> ' +
-        'or email <a href="mailto:hello@cellsure.co.uk" style="color:var(--cyan)">hello@cellsure.co.uk</a> and we\'ll check the register for you.</p>' +
-      '</div>';
-  }
-
-  function renderError(){
-    result.innerHTML =
-      '<div class="not-found">' +
-        '<p><b>Sorry — the register can\'t be reached right now.</b></p>' +
-        '<p style="margin-top:10px">Please try again in a moment, or call <a href="tel:+447522048822" style="color:var(--cyan)">07522 048822</a> and we\'ll verify it for you.</p>' +
-      '</div>';
-  }
-
-  function lookup(raw){
-    var serial = (raw || '').trim().toUpperCase();
-    if(!serial){ return; }
-    setNote('// CHECKING THE REGISTER…', false);
-    fetch(DATA_URL, {cache:'no-store'})
-      .then(function(r){ if(!r.ok) throw new Error('bad status'); return r.json(); })
-      .then(function(data){
-        var c = data.certificates && data.certificates[serial];
-        if(c){
-          setNote('// CERTIFICATE FOUND.', true);
-          renderFound(serial, c);
-        }else{
-          setNote('// NOT ON THE REGISTER.', false);
-          renderNotFound(serial);
-        }
-        result.scrollIntoView({behavior:'smooth', block:'nearest'});
-      })
-      .catch(function(){
-        setNote('// LOOKUP FAILED.', false);
-        renderError();
-      });
-  }
-
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    if(!form.reportValidity()) return;
-    var serial = input.value.trim().toUpperCase();
-    lookup(serial);
-    // keep the URL shareable without reloading
-    if(history.replaceState){
-      history.replaceState(null, '', '?cert=' + encodeURIComponent(serial));
+      var db = await load();
+      var secret = "CELLSURE|" + id + "|" + reg;
+      var key = hex(await crypto.subtle.digest("SHA-256", enc("lookup|" + secret)));
+      var rec = db.records[key];
+      if (!rec){
+        message("No certificate matches that ID and registration.",
+          "Check both and try again. If it still does not match, email hello@cellsure.co.uk.");
+        return;
+      }
+      var base = await crypto.subtle.importKey("raw", enc(secret), "PBKDF2", false, ["deriveKey"]);
+      var aes = await crypto.subtle.deriveKey({name:"PBKDF2", salt:enc(SALT), iterations:ITER, hash:"SHA-256"},
+        base, {name:"AES-GCM", length:256}, false, ["decrypt"]);
+      var plain = await crypto.subtle.decrypt({name:"AES-GCM", iv:b64(rec.iv)}, aes, b64(rec.ct));
+      show(JSON.parse(new TextDecoder().decode(plain)));
+      history.replaceState(null, "", "?id=" + id + "&reg=" + reg);
+    } catch(e){
+      message("The check could not run.", "Refresh the page and try again. If it keeps failing, email hello@cellsure.co.uk.");
+    } finally {
+      go.disabled = false; go.textContent = "Check certificate";
     }
-  });
+  }
 
-  // Support no-JS style GET submits and shared links: /verify/?cert=CS-2026-000418
-  var q = new URLSearchParams(location.search).get('cert');
-  if(q){ input.value = q.trim().toUpperCase(); lookup(q); }
+  function show(c){
+    var pct = parseFloat(c.soh) || 0;
+    var link = c.link
+      ? '<a class="btn" href="' + esc(c.link) + '" target="_blank" rel="noopener">View the original certificate at Generational</a>' +
+        '<p class="small">Opens the test record held by Generational, who make our test equipment.</p>'
+      : '<p class="small" style="margin:0">For a copy of the original certificate, email hello@cellsure.co.uk.</p>';
+    out.innerHTML =
+      '<article class="cert">' +
+        '<div class="cert-head"><span class="ok">Certificate found. Tested by CellSure.</span><span class="cid">ID ' + esc(c.id) + '</span></div>' +
+        '<div class="cert-body">' +
+          '<p class="car">' + esc(c.car) + '</p>' +
+          '<span class="reg">' + esc(c.reg) + '</span>' +
+          '<div class="soh"><span class="soh-num">' + esc(c.soh) + '</span><span class="soh-lab">state of health</span></div>' +
+          '<div class="meter" role="img" aria-label="State of health ' + esc(c.soh) + '"><i></i></div>' +
+          '<p class="result">' + esc(c.result) + '</p>' +
+          '<dl>' +
+            '<dt>Test date</dt><dd>' + esc(c.date) + '</dd>' +
+            '<dt>Mileage at test</dt><dd>' + esc(c.mileage) + '</dd>' +
+            '<dt>Capacity when new</dt><dd>' + esc(c.capacity) + '</dd>' +
+            '<dt>Battery warranty</dt><dd>' + esc(c.warranty) + '</dd>' +
+          '</dl>' +
+        '</div>' +
+        '<div class="actions">' + link + '</div>' +
+      '</article>';
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){
+      out.querySelector(".meter i").style.width = Math.min(pct,100) + "%";
+    }); });
+  }
+
+  f.addEventListener("submit", function(e){ e.preventDefault(); check(cidEl.value, regEl.value); });
+
+  var q = new URLSearchParams(location.search);
+  if (q.get("id") && q.get("reg")){
+    cidEl.value = normId(q.get("id")); regEl.value = normReg(q.get("reg"));
+    check(cidEl.value, regEl.value);
+  }
 })();
 </script>
 </body>
