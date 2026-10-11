@@ -12,14 +12,14 @@
   }catch(e){ window.CS_PREFILL = {id:"", reg:""}; }
 })();
 </script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-H4P8HEW8DB"></script>
+<!-- Google tags load only after cookie consent. See /assets/consent.js -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-H4P8HEW8DB');
+  gtag('consent', 'default', {analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied'});
+  window.CS_TAGS = ['G-H4P8HEW8DB', 'AW-18322054920'];
 </script>
+<script src="/assets/consent.js" defer></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Check a certificate | CellSure</title>

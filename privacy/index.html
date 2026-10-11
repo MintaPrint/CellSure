@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-H4P8HEW8DB"></script>
+<!-- Google tags load only after cookie consent. See /assets/consent.js -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-H4P8HEW8DB');
+  gtag('consent', 'default', {analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied'});
+  window.CS_TAGS = ['G-H4P8HEW8DB', 'AW-18322054920'];
 </script>
+<script src="/assets/consent.js" defer></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Privacy Policy | CellSure</title>
@@ -50,7 +50,7 @@
   <div class="wrap doc">
     <p class="eyebrow">Legal</p>
     <h1>Privacy policy.</h1>
-    <p class="doc-updated">Last updated · 17 July 2026</p>
+    <p class="doc-updated">Last updated · 11 October 2026</p>
 
     <p>CellSure ("we", "us") provides independent EV battery State-of-Health testing and certification across the East Midlands. This policy explains what personal data we collect through <a href="/">cellsure.co.uk</a> and when delivering our service, why we collect it, and the rights you have over it under UK data protection law (UK GDPR and the Data Protection Act 2018).</p>
 
@@ -71,8 +71,14 @@
       <tr>
         <td>Vehicle identifiers (VIN, registration, odometer) and battery diagnostic data</td>
         <td>When we test a vehicle</td>
-        <td>To produce the certificate and keep the certificate register accurate and verifiable</td>
+        <td>To produce the battery report and keep the online certificate check accurate</td>
         <td>Performance of a contract (Art. 6(1)(b)); legitimate interest in maintaining a verifiable register (Art. 6(1)(f))</td>
+      </tr>
+      <tr>
+        <td>Google Analytics and Google Ads cookies: pages viewed, device and browser type, approximate location, and which advert (if any) brought you to the site</td>
+        <td>Only if you click "Accept" on the cookie message</td>
+        <td>To see how people find and use the site, and to measure our adverts</td>
+        <td>Consent (Art. 6(1)(a)). You can withdraw it at any time.</td>
       </tr>
       <tr>
         <td>Basic technical logs (IP address, browser type)</td>
@@ -85,24 +91,33 @@
 
     <h2>Who we share it with</h2>
     <ul>
-      <li><b>FormSubmit.co</b> — processes booking-form submissions and forwards them to our inbox. FormSubmit provides the form endpoint, AJAX submission support, spam controls and email delivery used by the booking form.</li>
-      <li><b>Our email and hosting providers</b> — to receive your enquiry and serve this website.</li>
-      <li><b>Google Fonts</b> — this site loads fonts from Google's servers, which involves your browser sending your IP address to Google; see the <a href="https://policies.google.com/privacy" rel="noopener">Google privacy policy</a>.</li>
+      <li><b>Generational</b> (generational.ac): makes our battery test equipment. The vehicle's VIN, registration, mileage and battery data go through their system to produce the certificate, and they keep a copy of the certificate online.</li>
+      <li><b>FormSubmit.co</b>: processes booking-form submissions and forwards them to our inbox. FormSubmit provides the form endpoint, AJAX submission support, spam controls and email delivery used by the booking form.</li>
+      <li><b>Google</b> (Analytics and Ads): only if you accept cookies.</li>
+      <li><b>Our email and hosting providers</b>: to receive your enquiry and serve this website.</li>
+      <li><b>Google Fonts</b>: this site loads fonts from Google's servers, which involves your browser sending your IP address to Google; see the <a href="https://policies.google.com/privacy" rel="noopener">Google privacy policy</a>.</li>
       <li>Nobody else, unless we are required to by law.</li>
     </ul>
 
     <h2>How long we keep it</h2>
     <ul>
-      <li><b>Enquiries that don't become bookings</b> — deleted within 12 months.</li>
-      <li><b>Booking and certificate records</b> — kept for 6 years, because certificates remain verifiable online and records may be needed for legal or accounting purposes.</li>
+      <li><b>Enquiries that don't become bookings</b>: deleted within 12 months.</li>
+      <li><b>Booking and certificate records</b>: kept for 6 years, because certificates remain verifiable online and records may be needed for legal or accounting purposes.</li>
     </ul>
 
-    <h2>Cookies</h2>
-    <p>This site uses Google Analytics 4 to measure how visitors find and use the site. It sets cookies in your browser and records your approximate location (country and region, taken from a shortened IP address), your device and browser type, the pages you view and how long you stay. Google processes this data on our behalf and we do not use it to identify you personally. We set no advertising trackers.</p>
-    <p>You can opt out using Google's <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Analytics Opt-out Browser Add-on</a>.</p>
+    <h2 id="cookies">Cookies</h2>
+    <p>When you first visit, we ask whether you accept cookies. If you click "Reject", or do not answer, no Google Analytics or Google Ads code runs and no cookies from them are set.</p>
+    <p>If you click "Accept", we use:</p>
+    <ul>
+      <li><b>Google Analytics 4</b>: to see how visitors find and use the site. It records your approximate location (country and region, from a shortened IP address), your device and browser type, the pages you view and how long you stay.</li>
+      <li><b>Google Ads</b>: to measure whether our adverts lead to visits, calls or enquiries.</li>
+    </ul>
+    <p>Google processes this data for us. We do not use it to identify you personally. We store your choice in your browser so we do not ask on every page.</p>
+    <p><button type="button" class="btn btn-ghost" onclick="csConsent.open()">Change my cookie choice</button></p>
 
     <h2>Certificate verification</h2>
-    <p>Our <a href="/verify/">online verification page</a> displays only what is needed to confirm a certificate is genuine: the certificate number, vehicle make/model/year, the last four characters of the VIN, test date, battery results and verdict. It never displays names, contact details or full VINs.</p>
+    <p>Our <a href="/verify/">online verification page</a> shows a test result only to someone who enters both the assessment ID and the registration. It shows the car make and model, registration, test date, mileage, battery health result, capacity and warranty status, with a link to the original certificate held by Generational. It never shows names, contact details or the VIN.</p>
+    <p>The records behind the page are locked, so they cannot be read without the right assessment ID and registration. We do not send the assessment ID or registration to Google.</p>
 
     <h2>Your rights</h2>
     <p>You can ask us to access, correct, delete or restrict the personal data we hold about you, object to our processing of it, or ask for a copy in a portable format. Email <a href="mailto:hello@cellsure.co.uk">hello@cellsure.co.uk</a> and we'll respond within one month. If you're not happy with how we handle your data, you can complain to the Information Commissioner's Office at <a href="https://ico.org.uk" rel="noopener">ico.org.uk</a>.</p>
