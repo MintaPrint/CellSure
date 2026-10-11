@@ -116,6 +116,20 @@ nav.main-nav a:hover{color:var(--cyan)}
 .header-cta{display:none}
 @media(min-width:620px){nav.main-nav{display:flex}}
 
+/* ============ MOBILE MENU ============ */
+.nav-toggle{display:none}
+@media(max-width:619px){
+  .header-phone{margin-left:auto}
+  .nav-toggle{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;margin-right:-8px;
+    padding:0;border:0;border-radius:8px;background:none;color:var(--text);cursor:pointer;flex:none}
+  .nav-toggle:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+  header.menu-open{background:var(--bg);-webkit-backdrop-filter:none;backdrop-filter:none}
+  header.menu-open nav.main-nav{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;
+    padding:4px clamp(12px,3vw,48px) 12px;background:var(--bg);border-bottom:1px solid var(--line-strong)}
+  header.menu-open nav.main-nav a{font-size:17px;padding:14px 4px;border-bottom:1px solid var(--line)}
+  header.menu-open nav.main-nav a:last-child{border-bottom:0}
+}
+
 /* ============ PAGE SHELL ============ */
 .page{padding:clamp(120px,16vh,160px) 0 clamp(56px,8vw,88px)}
 
