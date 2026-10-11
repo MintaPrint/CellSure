@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
+<script>
+/* Read ?id=&reg= from a shared link, then remove them from the address bar
+   before Google Analytics runs, so the ID and registration are never sent to Google. */
+(function(){
+  try{
+    var q = new URLSearchParams(location.search);
+    window.CS_PREFILL = {id: q.get("id") || "", reg: q.get("reg") || ""};
+    if (location.search) history.replaceState(null, "", location.pathname);
+  }catch(e){ window.CS_PREFILL = {id:"", reg:""}; }
+})();
+</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-H4P8HEW8DB"></script>
 <script>
@@ -143,7 +154,7 @@ footer a{color:var(--muted)}
 
 <script>
 (function(){
-  var SALT = "cellsure-verify-v1", ITER = 150000;
+  var SALT = "cellsure-verify-v2", ITER = 150000;
   var f = document.getElementById("f"), cidEl = document.getElementById("cid"),
       regEl = document.getElementById("reg"), go = document.getElementById("go"),
       out = document.getElementById("out"), data = null;
@@ -176,19 +187,18 @@ footer a{color:var(--muted)}
     try{
       var db = await load();
       var secret = "CELLSURE|" + id + "|" + reg;
-      var key = hex(await crypto.subtle.digest("SHA-256", enc("lookup|" + secret)));
+      var base = await crypto.subtle.importKey("raw", enc(secret), "PBKDF2", false, ["deriveBits"]);
+      var bits = new Uint8Array(await crypto.subtle.deriveBits({name:"PBKDF2", salt:enc(SALT), iterations:ITER, hash:"SHA-256"}, base, 512));
+      var key = hex(await crypto.subtle.digest("SHA-256", bits.slice(32)));
       var rec = db.records[key];
       if (!rec){
         message("No certificate matches that ID and registration.",
           "Check both and try again. If it still does not match, email hello@cellsure.co.uk.");
         return;
       }
-      var base = await crypto.subtle.importKey("raw", enc(secret), "PBKDF2", false, ["deriveKey"]);
-      var aes = await crypto.subtle.deriveKey({name:"PBKDF2", salt:enc(SALT), iterations:ITER, hash:"SHA-256"},
-        base, {name:"AES-GCM", length:256}, false, ["decrypt"]);
+      var aes = await crypto.subtle.importKey("raw", bits.slice(0,32), {name:"AES-GCM"}, false, ["decrypt"]);
       var plain = await crypto.subtle.decrypt({name:"AES-GCM", iv:b64(rec.iv)}, aes, b64(rec.ct));
       show(JSON.parse(new TextDecoder().decode(plain)));
-      history.replaceState(null, "", "?id=" + id + "&reg=" + reg);
     } catch(e){
       message("The check could not run.", "Refresh the page and try again. If it keeps failing, email hello@cellsure.co.uk.");
     } finally {
@@ -227,9 +237,9 @@ footer a{color:var(--muted)}
 
   f.addEventListener("submit", function(e){ e.preventDefault(); check(cidEl.value, regEl.value); });
 
-  var q = new URLSearchParams(location.search);
-  if (q.get("id") && q.get("reg")){
-    cidEl.value = normId(q.get("id")); regEl.value = normReg(q.get("reg"));
+  var pre = window.CS_PREFILL || {};
+  if (pre.id && pre.reg){
+    cidEl.value = normId(pre.id); regEl.value = normReg(pre.reg);
     check(cidEl.value, regEl.value);
   }
 })();
