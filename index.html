@@ -618,14 +618,18 @@ details p b{color:var(--text);font-weight:600}
   font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;
   text-transform:uppercase;color:var(--slate);
 }
-.fld input,.fld select{
+.fld input,.fld select,.fld textarea{
   width:100%;background:var(--bg);color:var(--text);
   border:1px solid var(--line-strong);border-radius:5px;
   padding:12px 13px;font-family:var(--body);font-size:15px;
 }
-.fld input::placeholder{color:var(--slate);opacity:.75}
-.fld input:focus,.fld select:focus{outline:2px solid var(--cyan);outline-offset:1px;border-color:transparent}
-.fld input:hover,.fld select:hover{border-color:var(--slate)}
+.fld input::placeholder,.fld textarea::placeholder{color:var(--slate);opacity:.75}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:2px solid var(--cyan);outline-offset:1px;border-color:transparent}
+.fld input:hover,.fld select:hover,.fld textarea:hover{border-color:var(--slate)}
+.fld textarea{min-height:96px;resize:vertical;line-height:1.5}
+#f-reg{text-transform:uppercase}
+#f-reg::placeholder{text-transform:none}
+.book-note:empty{display:none}
 .book-note{
   font-family:var(--mono);font-size:11px;letter-spacing:.1em;
   color:var(--slate);margin-top:18px;text-transform:uppercase;
@@ -1084,15 +1088,17 @@ footer{border-top:1px solid var(--line);padding:52px 0 36px;font-size:14px}
       <div class="book-grid">
         <label class="fld"><span>Name</span><input id="f-name" name="name" type="text" autocomplete="name" placeholder="Your name" required></label>
         <label class="fld"><span>Phone</span><input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="07…" required></label>
+        <label class="fld"><span>Email</span><input id="f-email" name="email" type="email" autocomplete="email" placeholder="you@example.com"></label>
         <label class="fld"><span>Postcode</span><input id="f-pc" name="postcode" type="text" autocomplete="postal-code" placeholder="e.g. NG18 1AA" required></label>
         <label class="fld"><span>Vehicle</span><input id="f-veh" name="vehicle" type="text" placeholder="e.g. 2021 Kia e-Niro 64 kWh"></label>
+        <label class="fld"><span>Registration</span><input id="f-reg" name="registration" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="10" placeholder="e.g. AB12 CDE"></label>
         <label class="fld fld-wide"><span>I am a</span>
           <select id="f-who" name="enquiry_type">
-            <option>Private buyer (pre-purchase test)</option>
-            <option>Dealer (single car)</option>
-            <option>Dealer (multi-car visit)</option>
+            <option>Private buyer</option>
+            <option>Dealer</option>
           </select>
         </label>
+        <label class="fld fld-wide"><span>Notes</span><textarea id="f-notes" name="notes" rows="4" maxlength="1000" placeholder="Anything we should know?"></textarea></label>
       </div>
       <input type="hidden" name="_subject" value="New CellSure booking request">
       <input type="hidden" name="_template" value="table">
@@ -1104,7 +1110,7 @@ footer{border-top:1px solid var(--line);padding:52px 0 36px;font-size:14px}
         <button class="btn btn-primary" type="submit" id="f-send">Request my slot <span class="arrow">→</span></button>
         <a class="cta-phone" href="tel:+447522048822"><small>OR CALL</small> 07522 048822</a>
       </div>
-      <p class="book-note" id="f-note" role="status" aria-live="polite">// NO PAYMENT TAKEN. WE CONFIRM PRICE AND TIME BEFORE WE TRAVEL.</p>
+      <p class="book-note" id="f-note" role="status" aria-live="polite"></p>
       <p class="book-consent">By submitting you agree to our <a href="/privacy/">Privacy Policy</a>.</p>
       </form>
     </div>
@@ -1242,8 +1248,11 @@ footer{border-top:1px solid var(--line);padding:52px 0 36px;font-size:14px}
       var data = {
         name: g('f-name'),
         phone: g('f-phone'),
+        email: g('f-email') || 'not given',
         postcode: g('f-pc'),
         vehicle: g('f-veh') || 'not given',
+        registration: g('f-reg').toUpperCase() || 'not given',
+        notes: g('f-notes') || 'none',
         enquiry_type: document.getElementById('f-who').value,
         _subject: 'CellSure booking request: ' + (g('f-veh') || 'EV battery test'),
         _template: 'table',
@@ -1255,7 +1264,7 @@ footer{border-top:1px solid var(--line);padding:52px 0 36px;font-size:14px}
       form.classList.add('show-validation');
       if(!form.checkValidity()){
         ev.preventDefault();
-        setNote('// PLEASE ADD YOUR NAME, PHONE AND POSTCODE.', 'err');
+        setNote('// PLEASE ADD YOUR NAME, PHONE AND POSTCODE, AND CHECK YOUR EMAIL.', 'err');
         form.reportValidity();
         return;
       }
