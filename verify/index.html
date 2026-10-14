@@ -227,6 +227,7 @@ footer a{color:var(--muted)}
             '<dt>Capacity when new</dt><dd>' + esc(c.capacity) + '</dd>' +
             '<dt>Battery warranty</dt><dd>' + esc(c.warranty) + '</dd>' +
           '</dl>' +
+          (c.note ? '<p class="small">' + esc(c.note) + '</p>' : '') +
         '</div>' +
         '<div class="actions">' + link + '</div>' +
       '</article>';
