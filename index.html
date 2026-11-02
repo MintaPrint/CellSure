@@ -1285,6 +1285,13 @@ footer{border-top:1px solid var(--line);padding:52px 0 36px;font-size:14px}
         form.querySelector('.book-grid').style.display = 'none';
         send.style.display = 'none';
         setNote('// REQUEST RECEIVED. WE WILL CALL YOU BACK SHORTLY.', 'ok');
+        /* after a successful booking: hide the intro text and show a thank-you in the badge */
+        var bookSec = document.getElementById('book');
+        if (bookSec) {
+          bookSec.querySelectorAll(':scope > .wrap > .eyebrow, :scope > .wrap > h2, :scope > .wrap > .section-lede').forEach(function(el){ el.style.display = 'none'; });
+          var live = bookSec.querySelector('.panel-head .live');
+          if (live) { live.textContent = 'Thank you, your details have been submitted.'; }
+        }
       }catch(err){
         send.disabled = false;
         setNote('// COULD NOT SEND. PLEASE CALL 07522 048822 OR EMAIL HELLO@CELLSURE.CO.UK.', 'err');
