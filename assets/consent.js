@@ -75,7 +75,8 @@
       if (was === "granted") location.reload(); // stop Google running on this page
     });
   }
-
+  document.addEventListener("click", function (e) { var a = e.target.closest && e.target.closest('a[href^="tel:"]'); if (a && loaded) gtag("event", "conversion", { send_to: "AW-18551886088/nDMtCKian7EdEIiinY5F", value: 1.0, currency: "GBP" }); });
+   
   window.csConsent = { open: open };
 
   var choice = get();
