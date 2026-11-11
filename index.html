@@ -1086,19 +1086,19 @@ footer{border-top:1px solid var(--line);padding:52px 0 36px;font-size:14px}
       <!-- Real form: posts natively to FormSubmit even with JS disabled. -->
       <form id="book-form" action="https://formsubmit.co/8cfe695077eb019a318fc8b6485adaba" method="POST">
       <div class="book-grid">
-        <label class="fld"><span>Name</span><input id="f-name" name="name" type="text" autocomplete="name" placeholder="Your name" required></label>
-        <label class="fld"><span>Phone</span><input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="07…" required></label>
-        <label class="fld"><span>Email</span><input id="f-email" name="email" type="email" autocomplete="email" placeholder="you@example.com"></label>
-        <label class="fld"><span>Postcode</span><input id="f-pc" name="postcode" type="text" autocomplete="postal-code" placeholder="e.g. NG18 1AA" required></label>
-        <label class="fld"><span>Vehicle</span><input id="f-veh" name="vehicle" type="text" placeholder="e.g. 2021 Kia e-Niro 64 kWh"></label>
-        <label class="fld"><span>Registration</span><input id="f-reg" name="registration" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="10" placeholder="e.g. AB12 CDE"></label>
-        <label class="fld fld-wide"><span>I am a</span>
+        <label class="fld"><span>Name *</span><input id="f-name" name="name" type="text" autocomplete="name" placeholder="Your name" required></label>
+        <label class="fld"><span>Phone *</span><input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="07…" required></label>
+        <label class="fld"><span>Email (optional)</span><input id="f-email" name="email" type="email" autocomplete="email" placeholder="you@example.com"></label>
+        <label class="fld"><span>Postcode *</span><input id="f-pc" name="postcode" type="text" autocomplete="postal-code" placeholder="e.g. NG18 1AA" required></label>
+        <label class="fld"><span>Vehicle (optional)</span><input id="f-veh" name="vehicle" type="text" placeholder="e.g. 2021 Kia e-Niro 64 kWh"></label>
+        <label class="fld"><span>Registration (optional)</span><input id="f-reg" name="registration" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="10" placeholder="e.g. AB12 CDE"></label>
+        <label class="fld fld-wide"><span>I am a *</span>
           <select id="f-who" name="enquiry_type">
             <option>Private buyer</option>
             <option>Dealer</option>
           </select>
         </label>
-        <label class="fld fld-wide"><span>Anything we should know?</span><textarea id="f-notes" name="notes" rows="4" maxlength="1000" placeholder="e.g. where the car is parked, best days or times, how many cars"></textarea></label>
+        <label class="fld fld-wide"><span>Anything we should know? (optional)</span><textarea id="f-notes" name="notes" rows="4" maxlength="1000" placeholder="e.g. where the car is parked, best days or times, how many cars"></textarea></label>
       </div>
       <input type="hidden" name="_subject" value="New CellSure booking request">
       <input type="hidden" name="_template" value="table">
