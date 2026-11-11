@@ -1346,6 +1346,9 @@ footer{border-top:1px solid var(--line);padding:52px 0 36px;font-size:14px}
         form_id: 'book-form',
         enquiry_type: who ? who.value : 'not given'
       });
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'conversion', { send_to: 'AW-18551886088/z0AXCJz4n7YdEIiinY5F' });
+      }
     }).observe(note, { attributes: true, attributeFilter: ['class'] });
   }
 })();
