@@ -1,0 +1,38 @@
+# CellSure
+
+> CellSure is an independent EV battery health testing and certification service covering Derbyshire, Nottinghamshire and Lincolnshire in the UK. We test the battery at the dealer's lot or the buyer's driveway and issue a certificate the same day. We never buy or sell cars.
+
+## What we do
+- On-site EV battery State-of-Health (SoH) tests
+- A same-day certificate showing SoH %, usable capacity in kWh and a plain-English result
+- A unique assessment ID on every report, which can be checked at https://www.cellsure.co.uk/verify/
+- Pre-purchase tests for private buyers
+- Multi-car forecourt testing for EV dealers
+
+## Price
+- A single pre-purchase test is from £99, certificate included
+- Dealers can get volume rates on multi-car visits. Email hello@cellsure.co.uk
+
+## Where we work
+Mobile service across Derbyshire, Nottinghamshire and Lincolnshire, including Derby, Chesterfield, Nottingham, Mansfield, Newark-on-Trent, Lincoln and Grantham. Further afield by arrangement.
+
+## Hours
+Monday to Saturday, 08:00 to 18:00.
+
+## Contact
+- Phone: 07522 048822
+- Email: hello@cellsure.co.uk
+- Book online: https://www.cellsure.co.uk/#book
+
+## Key facts
+- A test takes about 20 to 60 minutes per car, done where the car is parked
+- The car needs roughly 20% charge or more. No other prep
+- We test most major makes, including Nissan, Tesla, Kia, Hyundai, VW, BMW, Renault and MG, and plug-in hybrids. We confirm coverage for the exact model before you pay
+
+## Key pages
+- [Home](https://www.cellsure.co.uk/): the service, prices, coverage and booking form
+- [Used EV battery health guide](https://www.cellsure.co.uk/guides/used-ev-battery-health/): what to know about a used EV's battery before you buy
+- [Sample report](https://www.cellsure.co.uk/sample/): what a CellSure battery health report looks like
+- [Verify a certificate](https://www.cellsure.co.uk/verify/): check a report with its assessment ID and registration
+- [Terms of service](https://www.cellsure.co.uk/terms/)
+- [Privacy policy](https://www.cellsure.co.uk/privacy/)
